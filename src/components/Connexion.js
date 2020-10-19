@@ -11,14 +11,7 @@ import withPlaceholder from '../hoc/withPlaceholder'
 
 class Connexion extends React.Component {
   state = {
-    uid: null,
-    chef: null,
-    goToApp: false
-  }
-
-  goToApp = event => {
-    event.preventDefault()
-    this.setState({ goToApp: true })
+    uid: null
   }
 
   componentDidMount() {
@@ -30,16 +23,6 @@ class Connexion extends React.Component {
   }
 
   handleAuth = async authData => {
-    // const box = await base.fetch(this.props.pseudo, { context: this })
-    // if (!box.chef) {
-    //   await base.post(`${this.props.pseudo}/chef`, {
-    //     data: authData.user.uid
-    //   })
-    // }
-
-    console.log(authData)
-
-    // A étudier
     this.setState({
       uid: authData.user.uid
     })
@@ -51,11 +34,6 @@ class Connexion extends React.Component {
       .auth()
       .signInWithPopup(authProvider)
       .then(this.handleAuth)
-  }
-
-  handleChange = event => {
-    const pseudo = event.target.value
-    this.setState({ pseudo })
   }
 
   render () {
