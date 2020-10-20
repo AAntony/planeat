@@ -7,14 +7,19 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import base, { firebaseApp } from '../base'
 
-import withPlaceholder from '../hoc/withPlaceholder'
+import withFirebase from '../hoc/withFirebase'
 
 class Connexion extends React.Component {
   state = {
-    uid: null
+    uid: ''
   }
 
   componentDidMount() {
+    base.syncState('/chefs', {
+      context: this,
+      state: 'uid'
+    })
+
     firebase.auth().onAuthStateChanged(user => {
       if(user) {
         this.handleAuth({ user })
@@ -37,7 +42,6 @@ class Connexion extends React.Component {
   }
 
   render () {
-    console.log(this.state.uid)
     if (this.state.uid) {
       return <Redirect push to={`/chef/${this.state.uid}`} />
     }
@@ -50,6 +54,6 @@ class Connexion extends React.Component {
   }
 }
 
-const WrappedComponent = withPlaceholder(Connexion)
+const WrappedComponent = withFirebase(Connexion)
 
 export default WrappedComponent

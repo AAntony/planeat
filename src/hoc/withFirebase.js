@@ -19,11 +19,8 @@ const withFirebase = WrappedComponent => (
     componentWillUnmount () {
       base.removeBinding(this.ref)
     }
-  
+      
     render () {
-      console.log('uid: '+this.state.uid)
-      console.log('chef: '+this.state.chef)
-
       return (
         <WrappedComponent
           {...this.props}
