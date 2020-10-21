@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Login = ({ authenticate }) => {
+const LoginFB = ({ authenticate }) => {
   return (
     <div className='login'>
       <h2>Connecte toi pour créer tes recettes !</h2>
@@ -9,4 +9,4 @@ const Login = ({ authenticate }) => {
   )
 }
 
-export default Login
+export default LoginFB

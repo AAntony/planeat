@@ -6,9 +6,11 @@ import Wall from './components/Wall'
 
 import withFirebase from './hoc/withFirebase'
 
-const App = ({ uid }) => {
+const App = ({ match }) => {
   return (
-    <Wall />
+    <Wall
+      chefName={match.params.chefName}
+    />
   )
 }
 
