@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+// CSS
+import './App.css'
 
-function App() {
+import Wall from './components/Wall'
+
+import withFirebase from './hoc/withFirebase'
+
+const App = ({ match, uid }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Wall
+      chefName={match.params.chefName}
+      uid={uid}
+    />
+  )
 }
 
-export default App;
+const WrappedComponent = withFirebase(App)
+
+export default WrappedComponent
