@@ -1,0 +1,31 @@
+CHEF	- USER		- UID String
+					- IMAGE Blob
+					- INFORMATIONS String
+					- CHEFNAME String
+
+		- WALL		- COMMENTAIRES	- COMMENTAIRE	- ID_COMMENTAIRE
+													- TITRE String
+													- CONTENU String
+													- IMAGE Blob
+													- DATE Date
+
+		- RECETTES	- RECETTE	- ID_RECETTE Integer
+								- NOM String
+								- IMAGE Blob
+								- INFORMATIONS String
+								- INGREDIENTS String
+								- INSTRUCTIONS String
+
+		- LISTES	- LISTE		- ID_LISTE
+								- NOM String
+								- ARTICLE		- ID_ARTICLE
+												- INGREDIENTS String
+												- ACHETER Boolean
+
+		- PLANNING	- SEMAINES	- ID_SEMAINE Integer
+								- NUMERO Integer
+								- RECETTES		- RECETTE
+												- POSITION Integer
+		
+		- STOCK		- NOM String
+					- QUANTITE Integer
