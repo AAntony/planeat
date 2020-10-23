@@ -1,5 +1,5 @@
-CHEF	- USER		- UID String
-					- IMAGE Blob
+CHEF/	- USER		- UID String
+UID					- IMAGE Blob
 					- INFORMATIONS String
 					- CHEFNAME String
 
