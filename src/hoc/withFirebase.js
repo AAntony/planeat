@@ -5,24 +5,31 @@ import base from '../base'
 const withFirebase = WrappedComponent => (
   class HOC extends Component {
     state = {
-      uid: this.props.match.params.uid,
-      chef: this.props.match.params.chef
+      chefName: this.props.match.params.chefName,
+      users: {}
     }
 
     componentDidMount () {
-      this.ref = base.syncState(`${this.state.chef}/uid`, {
+      this.ref = base.syncState(`${this.state.chefName}`, {
         context: this,
-        state: 'uid'
+        state: 'users'
       })
     }
   
     componentWillUnmount () {
       base.removeBinding(this.ref)
     }
+
+    createUser = user => {
+      const users = {...this.state.users}
+      users[`user-${Date.now()}`] = user
+      this.setState({ users })
+    }
       
     render () {
       return (
         <WrappedComponent
+          createUser={this.createUser}
           {...this.props}
         />
       )
