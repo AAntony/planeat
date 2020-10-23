@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AddUserForm from './AddUserForm'
+import LoginFB from './LoginFB'
 
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -35,8 +36,35 @@ class Wall extends Component {
     this.handleChefNameAvailability()
   }
 
+  handleAuth = async authData => {
+    const box = await base.fetch(this.props.chefName, { context: this })
+    if (!box.chef) {
+      await base.post(`${this.props.chefName}/chef`, {
+        data: authData.user.uid
+      })
+    }
+
+    this.setState({
+      uid: authData.user.uid,
+      chef: box.chef || authData.user.uid
+    })
+  }
+
+  authenticate = () => {
+    const authProvider = new firebase.auth.FacebookAuthProvider()
+    firebaseApp
+      .auth()
+      .signInWithPopup(authProvider)
+      .then(this.handleAuth)
+  }
+
   render () {
     const { createUser } = this.props
+
+    // Si l'utilisateur n'est pas connecté
+    // if(!this.state.uid) {
+    //   return <LoginFB authenticate={this.authenticate} />
+    // }
 
     return (
       <>
