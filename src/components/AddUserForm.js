@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 class AddUserForm extends Component {
   state = {
+    uid: '',
     name: '',
     firstName: '',
-    chefName: this.props.chefName
+    chefName: ''
   }
 
   handleChange = event => {
@@ -15,7 +16,6 @@ class AddUserForm extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const user = { ...this.state }
-    // CREATE USER N'est pas une props reconnue
     this.props.createUser(user)
   }
 

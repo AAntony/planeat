@@ -10,7 +10,7 @@ const withFirebase = WrappedComponent => (
     }
 
     componentDidMount () {
-      this.ref = base.syncState(`${this.state.chefName}`, {
+      this.ref = base.syncState(`${this.state.chefName + '-' + Date.now()}`, {
         context: this,
         state: 'users'
       })
@@ -22,7 +22,13 @@ const withFirebase = WrappedComponent => (
 
     createUser = user => {
       const users = {...this.state.users}
-      users[`user-${Date.now()}`] = user
+      users['user'] = user
+      this.setState({ users })
+    }
+
+    updateUser = (key, newUser) => {
+      const users = {...this.state.users}
+      users[key] = newUser
       this.setState({ users })
     }
       
@@ -30,6 +36,7 @@ const withFirebase = WrappedComponent => (
       return (
         <WrappedComponent
           createUser={this.createUser}
+          updateUser={this.updateUser}
           {...this.props}
         />
       )
